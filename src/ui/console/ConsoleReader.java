@@ -3,22 +3,60 @@ package ui.console;
 import java.io.*;
 import common.util.Logger;
 
+/**
+ * The console reader includes low-level parsers. This class
+ * is meant to be extended by ViewModels in other modules
+ *
+ * To add functionality in this class, simply use the
+ * supply() utility method by passing in an inputType argument
+ * and a lambda that returns the data type you wish to be
+ * supplied
+ *
+ * @version 1.1
+ * @see Logger
+ * @see BufferedReader
+ * @see IOException
+ */
 public class ConsoleReader {
     private BufferedReader reader;
 
-    public static void main(String[] args){
-        new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))).getString("text");
-    }
-
+    /**
+     * A custom functional interface that mimics {@link java.util.function.Supplier},
+     * but allows its {@code get()} method to throw an {@link IOException}.
+     *
+     * <p>This is useful for creating wrapper methods that supply a value
+     * while handling checked I/O operations.</p>
+     *
+     * @param <T> the type of value supplied
+     */
     @FunctionalInterface
     interface Supplier<T>{
         T get() throws IOException;
     }
 
+    /**
+     * Public constructor for ConsoleReader. In this project, to remove
+     * the necessity of creating apis, interfaces or abstractions
+     * for contracted methods, this reader class is only limited to
+     * console
+     *
+     * If this project is intended to scale further to a GUI implementation,
+     * then simply replace the console prompter attached to the catch statement
+     * of the wrapper utility at the bottommost part of the code
+     *
+     * @param reader used for scanning inputs
+     * @see BufferedReader
+     */
     public ConsoleReader(BufferedReader reader){
         this.reader = reader;
     }
 
+    /**
+     * Gets a string, if empty then prompt again
+     *
+     * @param inputType the type of string to be supplied (e.g. Product name)
+     * @return supplied string value / text
+     */
     public String getString(String inputType){
         return supply(inputType, ()->{
             String line = readLine().trim();
@@ -27,22 +65,60 @@ public class ConsoleReader {
         });
     }
 
+    /**
+     * Gets a long primitive data type
+     *
+     * @param inputType the type of long to be supplied (e.g. Product ID)
+     * @return supplied long value
+     */
     public long getLong(String inputType){
         return supply(inputType, ()-> Long.parseLong(readLine()));
     }
 
+    /**
+     * Gets a float primitive data type
+     *
+     * @param inputType the type of float to be supplied (e.g. Product Price)
+     * @return supplied float value
+     */
     public float getFloat(String inputType){
         return supply(inputType, ()-> Float.parseFloat(readLine()));
     }
 
+    /**
+     * Gets an integer primitive data type
+     *
+     * @param inputType the type of integer to be supplied (e.g. index of choice, etc.)
+     * @return supplied integer value
+     */
     public int getInt(String inputType){
         return supply(inputType, ()-> Integer.parseInt(readLine()));
     }
 
+    /**
+     * Wrapper for reader.readLine() method
+     * @return string
+     * @throws IOException when invalid input/output
+     */
     protected String readLine() throws IOException{
         return reader.readLine();
     }
-    protected <T> T supply(String inputType, Supplier<T> supplier){
+
+    /**
+     * Wrapper method which is the basis for all the getter methods
+     * in this class file. Also comes with a prompter that handles checked
+     * exceptions until a valid input is inputted
+     *
+     * @param inputType the type to be supplied
+     *                  The original design used to pass the class (e.g. Integer.class)
+     *                  of the supplier's type parameter. However, that
+     *                  negatively affects the ux design of the CLI /
+     *                  Console tool, so a string-based param is used
+     * @param supplier the function that returns a data of type
+     * @return the data to be supplied
+     * @param <T> the parameter to be supplied
+     */
+    private <T> T supply(String inputType, Supplier<T> supplier){
         while(true){
             try {
                 return supplier.get();
