@@ -5,7 +5,7 @@ package config;
  * This stores flags and program details to be reused in the program.
  * Could've used a .properties file for clearer intent
  */
-public class AppConfig {
+public final class AppConfig {
     /**
      * Flag for ansi support, ticked false since Codiva compiler does not
      * support Ansi

@@ -10,7 +10,7 @@ package datastructures;
  * @param <T> data type of the linked list instance
  * @see ListNode
  */
-public class LinkedList <T>{
+public final class LinkedList <T>{
     private ListNode<T> head;
     private ListNode<T> tail;
     private int size;

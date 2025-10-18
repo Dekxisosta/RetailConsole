@@ -8,7 +8,7 @@ package datastructures;
  *
  * @param <T> data to be inputted
  */
-public class ListNode <T> {
+public final class ListNode <T> {
     private ListNode<T> next;
     private ListNode<T> prev;
     private T data;
