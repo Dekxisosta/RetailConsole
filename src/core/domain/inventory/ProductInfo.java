@@ -1,5 +1,4 @@
 package core.domain.inventory;
 
-public class InventoryManager {
-
+public class ProductInfo {
 }

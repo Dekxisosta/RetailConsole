@@ -1,11 +1,11 @@
-package ui.console;
+package ui.console.prompter;
 
 import java.io.*;
 import common.util.Logger;
 
 /**
- * The console reader includes low-level parsers. This class
- * is meant to be extended by ViewModels in other modules
+ * The console prompter includes low-level parsers. This class
+ * is meant to be extended by Controllers in other modules
  *
  * To add functionality in this class, simply use the
  * supply() utility method by passing in an inputType argument
@@ -17,8 +17,10 @@ import common.util.Logger;
  * @see BufferedReader
  * @see IOException
  */
-public class ConsoleReader {
+public class ConsolePrompter {
     private BufferedReader reader;
+
+
 
     /**
      * A custom functional interface that mimics {@link java.util.function.Supplier},
@@ -34,8 +36,10 @@ public class ConsoleReader {
         T get() throws IOException;
     }
 
+
+
     /**
-     * Public constructor for ConsoleReader. In this project, to remove
+     * Public constructor for ConsolePrompter. In this project, to remove
      * the necessity of creating apis, interfaces or abstractions
      * for contracted methods, this reader class is only limited to
      * console
@@ -47,9 +51,11 @@ public class ConsoleReader {
      * @param reader used for scanning inputs
      * @see BufferedReader
      */
-    public ConsoleReader(BufferedReader reader){
+    public ConsolePrompter(BufferedReader reader){
         this.reader = reader;
     }
+
+
 
     /**
      * Gets a string, if empty then prompt again
@@ -65,6 +71,8 @@ public class ConsoleReader {
         });
     }
 
+
+
     /**
      * Gets a long primitive data type
      *
@@ -74,6 +82,8 @@ public class ConsoleReader {
     public long getLong(String inputType){
         return supply(inputType, ()-> Long.parseLong(readLine()));
     }
+
+
 
     /**
      * Gets a float primitive data type
@@ -85,6 +95,8 @@ public class ConsoleReader {
         return supply(inputType, ()-> Float.parseFloat(readLine()));
     }
 
+
+
     /**
      * Gets an integer primitive data type
      *
@@ -95,6 +107,8 @@ public class ConsoleReader {
         return supply(inputType, ()-> Integer.parseInt(readLine()));
     }
 
+
+
     /**
      * Wrapper for reader.readLine() method
      * @return string
@@ -103,6 +117,8 @@ public class ConsoleReader {
     protected String readLine() throws IOException{
         return reader.readLine();
     }
+
+
 
     /**
      * Wrapper method which is the basis for all the getter methods
@@ -114,19 +130,32 @@ public class ConsoleReader {
      *                  of the supplier's type parameter. However, that
      *                  negatively affects the ux design of the CLI /
      *                  Console tool, so a string-based param is used
+     *
      * @param supplier the function that returns a data of type
      * @return the data to be supplied
      * @param <T> the parameter to be supplied
      */
     private <T> T supply(String inputType, Supplier<T> supplier){
+        showEnterPrompt(inputType);
+
         while(true){
             try {
                 return supplier.get();
             } catch (Exception e) {
                 Logger.logException(e, Logger.Severity.ERROR);
-                System.out.printf("Enter new %s: ", inputType);
+                showEnterPrompt(inputType);
             }
         }
+    }
+
+
+
+    /**
+     * Utility method for supply wrapper. Makes code more self-documenting
+     * @param inputType type of input to be prompted
+     */
+    private void showEnterPrompt(String inputType){
+        System.out.printf("Enter %s: ", inputType);
     }
 
 }

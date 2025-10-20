@@ -1,4 +1,4 @@
-package datastructures;
+package common.datastructures;
 
 /**
  * Linked list data structure that handles list nodes with
@@ -15,6 +15,8 @@ public final class LinkedList <T>{
     private ListNode<T> tail;
     private int size;
 
+
+
     /**
      * Internal class for handling list exceptions.
      * Extends {@link RuntimeException}
@@ -25,11 +27,13 @@ public final class LinkedList <T>{
              * Since this is 'advanced' code, super() basically points back
              * to the superclass this class extends to, which in this case
              * is RuntimeException. The message param is to ensure the superclass's
-             * public APIs will work (e.g. e.getMessage())
+             * public APIs will work as intended (e.g. e.getMessage())
              */
             super(message);
         }
     }
+
+
 
     /**
      * Public constructor of the class. When instantiated, it
@@ -37,6 +41,8 @@ public final class LinkedList <T>{
      * but to make intent clearer, is written as so
      */
     public LinkedList(){}
+
+
 
     /**
      * Inserts a valued node to the ending point of the list.
@@ -46,6 +52,9 @@ public final class LinkedList <T>{
     public void add(T data){
         addLast(data);
     }
+
+
+
     /**
      * Inserts a valued node to the starting point of the list.
      * Replaces existing head node if list is not empty
@@ -63,6 +72,8 @@ public final class LinkedList <T>{
         size++;
     }
 
+
+
     /**
      * Inserts a valued node to the ending point of the list.
      * Replaces existing tail node if list is not empty
@@ -79,6 +90,8 @@ public final class LinkedList <T>{
         }
         size++;
     }
+
+
 
     /**
      * Inserts a node at index with the given value.
@@ -108,6 +121,8 @@ public final class LinkedList <T>{
         size++;
     }
 
+
+
     /**
      * Removes the last node of the list
      * If list is empty, then nothing is done
@@ -115,6 +130,8 @@ public final class LinkedList <T>{
     public void remove(){
         removeLast();
     }
+
+
 
     /**
      * Removes the first node of the list
@@ -131,6 +148,8 @@ public final class LinkedList <T>{
         size--;
     }
 
+
+
     /**
      * Removes the last node of the list
      * If list is empty, then nothing is done
@@ -146,6 +165,8 @@ public final class LinkedList <T>{
         }
         size--;
     }
+
+
 
     /**
      * Removes a list node at the specified index.
@@ -173,6 +194,8 @@ public final class LinkedList <T>{
         size--;
     }
 
+
+
     /**
      * Checks if list is empty
      * @return true if empty, otherwise false
@@ -180,6 +203,8 @@ public final class LinkedList <T>{
     public boolean isEmpty(){
         return head == null;
     }
+
+
 
     /**
      * Checks if linked list has only one element
@@ -191,6 +216,8 @@ public final class LinkedList <T>{
         return size == 1;
     }
 
+
+
     /**
      * Gets the value of the data inside the indexed list node
      *
@@ -200,6 +227,8 @@ public final class LinkedList <T>{
         if(!isValidIndex(index)) throw new ListException("Index out of bounds.");
         return getNodeAtIndex(index).getData();
     }
+
+
 
     /**
      * Sets the value of the data of the specified indexed list node
@@ -212,6 +241,8 @@ public final class LinkedList <T>{
         if(!isValidIndex(index)) throw new ListException("Index out of bounds.");
         getNodeAtIndex(index).setData(data);
     }
+
+
 
     /**
      * Checks if the linked list contains a specified
@@ -231,6 +262,8 @@ public final class LinkedList <T>{
         }
         return false;
     }
+
+
 
     /**
      * Traverses the array and looks for the first instance
@@ -255,6 +288,8 @@ public final class LinkedList <T>{
         return -1;
     }
 
+
+
     /**
      * To prevent O(n) lookups for checking size,
      * an internal counter field, which mimics the
@@ -265,6 +300,8 @@ public final class LinkedList <T>{
     public int size(){
         return size;
     }
+
+
 
     /**
      * Creates an array of the list's elements in usual order
@@ -290,6 +327,8 @@ public final class LinkedList <T>{
         return arr;
     }
 
+
+
     /**
      * Creates an array of the list's elements in reverse order
      * since regular arrays implement Iterable,
@@ -313,6 +352,8 @@ public final class LinkedList <T>{
         }
         return arr;
     }
+
+
 
     /*
      * Author's Note:
@@ -343,14 +384,22 @@ public final class LinkedList <T>{
         }
     }
 
+
+
     // Unnecessary boilerplate for index validation, but improves readability
     private boolean isValidIndex(int index){
         return index>=0 && index<size;
     }
+
+
+
     // Checks if the index is the head, makes code more self-documenting
     private boolean isFirst(int index){
         return index == 0;
     }
+
+
+
     // Checks if the index is the tail, makes code more self-documenting
     private boolean isLast(int index){
         return index == size-1;

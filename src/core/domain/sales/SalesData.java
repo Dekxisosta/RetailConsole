@@ -1,5 +1,7 @@
 package core.domain.sales;
 
-public class SalesData {
+import common.datastructures.*;
 
+public class SalesData {
+//    private LinkedList<SalesRecord>
 }

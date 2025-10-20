@@ -1,4 +1,4 @@
-package datastructures;
+package common.datastructures;
 
 /**
  * ListNode model with two pointers and stores a value of datatype T.
@@ -13,6 +13,8 @@ public final class ListNode <T> {
     private ListNode<T> prev;
     private T data;
 
+
+
     /**
      * Public constructor of the ListNode model
      * @param data the data allocated to the list node
@@ -20,6 +22,8 @@ public final class ListNode <T> {
     public ListNode(T data) {
         this.data = data;
     }
+
+
 
     /**
      * Gets the node's next referenced node
@@ -29,17 +33,23 @@ public final class ListNode <T> {
         return next;
     }
 
+
+
     /**
      * Gets the node's previous referenced node
      * @return the previous node
      */
     public ListNode<T> getPrev() {return prev;}
 
+
+
     /**
      * Gets the allocated data of the instantiated list node
      * @return data of the list node
      */
     public T getData() {return data;}
+
+
 
     /**
      * Reallocates new data to the instantiated list node
@@ -48,6 +58,8 @@ public final class ListNode <T> {
     public void setData(T data) {
         this.data = data;
     }
+
+
 
     /**
      * Sets a new next pointer reference of another node
@@ -58,6 +70,8 @@ public final class ListNode <T> {
         this.next = next;
     }
 
+
+
     /**
      * Sets a new previous pointer reference of another node
      * @param prev whose memory address is to be referenced
@@ -66,6 +80,8 @@ public final class ListNode <T> {
     public void setPrev(ListNode<T> prev) {
         this.prev = prev;
     }
+
+
 
     /**
      * Instead of the node's memory address, it'll instead
