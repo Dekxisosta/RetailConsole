@@ -21,6 +21,7 @@ public final class Logger {
      * This makes the program scalable and maintainable
      */
     public enum Severity{
+        NOTICE(Ansi.Color.YELLOW),
         ERROR(Ansi.Color.ORANGE),
         FATAL_ERROR(Ansi.Color.RED);
 
@@ -35,8 +36,9 @@ public final class Logger {
      * This makes the program scalable and maintainable
      */
     public enum Level{
+        NOTICE(Ansi.Color.YELLOW),
         INFO(Ansi.Color.GREEN),
-        SYSTEM(Ansi.Color.YELLOW),
+        SYSTEM(Ansi.Color.DIM_WHITE),
         DEBUG(Ansi.Color.PINK);
 
         private Ansi.Color color;
@@ -49,7 +51,7 @@ public final class Logger {
      * @param e the exception caught
      * @param severity determines the error's hierarchy
      */
-    public static void logException(Exception e, Severity severity){
+    public static void log(Exception e, Severity severity){
         String label = formatLabel(severity.name(), severity.getColor());
         System.out.println(String.format("%s %s: %s",
                 label,
@@ -60,13 +62,32 @@ public final class Logger {
     }
 
     /**
+     * Logs a message with an appropriate level label
+     * @param text the text of the log
+     * @param level determines the error's hierarchy
+     */
+    public static void log(String title, String text, Level level){
+        String label = formatLabel(level.name(), level.getColor());
+        System.out.println(String.format("""
+                        
+                        %s %s
+                        %s
+                        """,
+                        label,
+                        title,
+                        text
+                )
+        );
+    }
+
+    /**
      * Logs an exception with an appropriate severity label,
      * flag in place for doing print stack traces to better document errors
      * @param e the exception caught
      * @param severity determines the error's hierarchy
      */
-    public static void logException(Exception e, Severity severity, boolean doPrintStackTrace){
-        logException(e, severity);
+    public static void log(Exception e, Severity severity, boolean doPrintStackTrace){
+        log(e, severity);
         if(doPrintStackTrace)
             e.printStackTrace();
     }

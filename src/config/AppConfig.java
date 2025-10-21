@@ -11,4 +11,6 @@ public final class AppConfig {
      * support Ansi
      */
     public final static boolean IS_ANSI_SUPPORTED = true;
+
+    public final static String PROGRAM_NAME = "Asacoco Retail Store CLI";
 }
