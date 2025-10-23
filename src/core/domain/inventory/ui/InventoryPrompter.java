@@ -1,12 +1,24 @@
 package core.domain.inventory.ui;
 
 import core.domain.inventory.model.*;
-import core.domain.inventory.util.*;
+import core.shared.id.*;
 import core.shared.ui.console.*;
 
 import java.io.*;
 
 public class InventoryPrompter extends ConsolePrompter {
+    /**
+     * Generates product IDs. This class extends the id generator
+     * abstraction which needs designated prefixes
+     * @see IDGenerator
+     */
+    public static class ProductIDGenerator extends IDGenerator {
+        @Override
+        public String getPrefix(){
+            return "PRD";
+        }
+    }
+
     private ProductIDGenerator idGenerator;
     /**
      * Public constructor for ConsolePrompter. In this project, to remove
@@ -21,10 +33,13 @@ public class InventoryPrompter extends ConsolePrompter {
      * @param reader used for scanning inputs
      * @see BufferedReader
      */
-    public InventoryPrompter(BufferedReader reader,
-                             ProductIDGenerator idGenerator) {
+    public InventoryPrompter(BufferedReader reader) {
         super(reader);
-        this.idGenerator = idGenerator;
+        this.idGenerator = new ProductIDGenerator();
+    }
+
+    public String generateID(){
+        return idGenerator.generateID();
     }
 
     public Product getProduct(){
@@ -33,11 +48,11 @@ public class InventoryPrompter extends ConsolePrompter {
         String name = getString("product name");
         String manufacturer = getString("product manufacturer");
         double price = getDouble("product price");
-        ProductInfo productInfo = new ProductInfo(name, manufacturer, price);
+        Product.ProductInfo productInfo = new Product.ProductInfo(name, manufacturer, price);
 
         int stock = getInt("product stock");
         int reorderPoint = getInt("product reorder point");
-        StockInfo stockInfo = new StockInfo(stock, reorderPoint);
+        Product.StockInfo stockInfo = new Product.StockInfo(stock, reorderPoint);
 
         return new Product(id, productInfo, stockInfo);
     }

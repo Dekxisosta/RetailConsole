@@ -6,12 +6,12 @@ import core.shared.datastructures.*;
 
 public class SalesRecord implements Record {
     private final String id;
-    private final LinkedList<SalesItem> productList;
+    private final RecordList<SalesItem> productList;
     private double totalSales;
     private int totalStockSold;
 
     public SalesRecord(String id,
-                       LinkedList<SalesItem> productList) {
+                       RecordList<SalesItem> productList) {
         this.id = id;
         this.productList = productList;
     }

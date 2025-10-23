@@ -2,19 +2,16 @@ package app;
 
 import common.util.*;
 import core.domain.analytics.*;
-import core.domain.events.*;
 import core.domain.inventory.controller.*;
 import core.domain.inventory.datastructures.*;
 import core.domain.inventory.manager.*;
 import core.domain.inventory.model.*;
 import core.domain.inventory.ui.*;
-import core.domain.inventory.util.*;
 import core.domain.sales.*;
+import core.domain.sales.datastructures.*;
 import core.domain.sales.model.*;
 import core.domain.sales.ui.console.*;
-import core.domain.sales.util.*;
 import core.shared.datastructures.*;
-import core.shared.dto.*;
 import core.shared.ui.console.*;
 
 import java.io.*;
@@ -40,68 +37,13 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         // General Utilities
-        ConsoleBuilder builder = new ConsoleBuilder();
-        ConsoleRenderer renderer = new ConsoleRenderer(builder);
+        ConsoleRenderer renderer = new ConsoleRenderer();
         ConsolePrompter prompter = new ConsolePrompter(reader);
 
-        // Events
-        ProductTransferEvent<ProductDTO> productTransferEvent = new ProductTransferEvent<>();
-        StockReductionEvent<ProductDTO> stockReductionEvent = new StockReductionEvent<>();
-
-        // Lists for databases
-        LinkedList<ProductTotals> totalsList = new LinkedList<>();
-        LinkedList<SalesRecord> salesRecordsList = new LinkedList<>();
-        InventoryList<Product> inventory = new InventoryList<>();
-
-        // ID Generators
-        ProductIDGenerator productIDGenerator = new ProductIDGenerator();
-        SalesRecordIDGenerator salesRecordIDGenerator = new SalesRecordIDGenerator();
-
-        // Extended prompters for modules
-        SalesConsolePrompter salesPrompter = new SalesConsolePrompter(reader, salesRecordIDGenerator);
-        InventoryPrompter inventoryPrompter = new InventoryPrompter(reader, productIDGenerator);
-
-        // View files
-        SalesConsoleView salesView = new SalesConsoleView(builder);
-        InventoryView inventoryView = new InventoryView(builder);
-
-        // Managers
-        SalesManager salesManager = new SalesManager(stockReductionEvent, totalsList, salesRecordsList);
-        InventoryManager inventoryManager = new InventoryManager(
-                productTransferEvent,inventory);
-        // Accessory controllers
-        SalesRecordController salesRecordController = new SalesRecordController(
-                salesView,
-                salesPrompter,
-                salesManager
-        );
-        InventoryUpdateController inventoryUpdateController= new InventoryUpdateController(
-                inventoryManager,
-                inventoryPrompter,
-                inventoryView
-        );
-
-        // Main controllers
-        SalesController salesController =  new SalesController(
-                salesView,
-                salesPrompter,
-                salesManager,
-                salesRecordController
-        );
-        InventoryController inventoryController = new InventoryController(
-                inventoryView,
-                inventoryPrompter,
-                inventoryManager,
-                inventoryUpdateController
-        );
-        AnalyticsController analyticsController = new AnalyticsController();
-
-        // Adds listeners to events
-        stockReductionEvent.addListener(inventoryManager);
-        productTransferEvent.addListener(salesManager);
-
-        // Populates the inventory with dummy data
-        populateInventory(inventoryManager, productIDGenerator);
+        // Main Controllers
+        SalesController salesController = initSalesModule(reader);
+        InventoryController inventoryController = initInventoryModule(reader);
+        AnalyticsController analyticsController = initAnalyticsModule(reader);
 
         try{
             new AppRunner(
@@ -110,72 +52,116 @@ public class Main {
                     inventoryController,
                     salesController,
                     analyticsController).run();
-
         }catch(Exception e){
             Logger.log(e, Logger.Severity.FATAL_ERROR, true);
         }
     }
 
+    public static SalesController initSalesModule(BufferedReader reader){
+        RecordList<SalesRecord> salesRecordsList = new RecordList<>();
+        SalesList<ProductTotals> totalsList = new SalesList<>();
+        SalesManager salesManager = new SalesManager(
+                totalsList,
+                salesRecordsList);
+        SalesConsolePrompter salesPrompter = new SalesConsolePrompter(reader);
+        SalesConsoleView salesView = new SalesConsoleView();
 
-    public static void populateInventory(InventoryManager inventoryManager, ProductIDGenerator productIDGenerator) {
+        return new SalesController(
+                salesView,
+                salesPrompter,
+                salesManager
+        );
+    }
+
+    public static AnalyticsController initAnalyticsModule(BufferedReader reader){
+        AnalyticsConsolePrompter analyticsPrompter = new AnalyticsConsolePrompter(reader);
+        AnalyticsConsoleView analyticsView = new AnalyticsConsoleView();
+        AnalyticsManager analyticsManager = new AnalyticsManager();
+
+        return new AnalyticsController(
+                analyticsView,
+                analyticsPrompter,
+                analyticsManager
+        );
+    }
+
+    public static InventoryController initInventoryModule(BufferedReader reader){
+        InventoryList<Product> inventoryList = new InventoryList<>();
+        InventoryPrompter inventoryPrompter = new InventoryPrompter(reader);
+        InventoryView inventoryView = new InventoryView();
+        InventoryManager inventoryManager = new InventoryManager(
+                inventoryList);
+
+        populateInventory(inventoryManager, inventoryPrompter);
+
+        return new InventoryController(
+                inventoryView,
+                inventoryPrompter,
+                inventoryManager
+        );
+    }
+
+
+    public static void populateInventory(InventoryManager inventoryManager,
+                                         InventoryPrompter productIDGenerator) {
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Lumen Pack", "LUM", 50.00),
-                new StockInfo(1000, 100)
+                new Product.ProductInfo("Lumen Pack", "LUM", 50.00),
+                new Product.StockInfo(1000, 100)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Colorful Sky", "CSK", 80.00),
-                new StockInfo(30, 50)
+                new Product.ProductInfo("Colorful Sky", "CSK", 80.00),
+                new Product.StockInfo(30, 50)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Echoes of Time", "EOT", 120.00),
-                new StockInfo(0, 30)
+                new Product.ProductInfo("Echoes of Time", "EOT", 120.00),
+                new Product.StockInfo(0, 30)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Chromatic Dreams", "CDM", 200.00),
-                new StockInfo(300, 20)
+                new Product.ProductInfo("Chromatic Dreams", "CDM", 200.00),
+                new Product.StockInfo(300, 20)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Prismatic Night", "PNG", 150.00),
-                new StockInfo(400, 40)
+                new Product.ProductInfo("Prismatic Night", "PNG", 150.00),
+                new Product.StockInfo(400, 40)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Eternal Voyage", "EVG", 180.00),
-                new StockInfo(350, 35)
+                new Product.ProductInfo("Eternal Voyage", "EVG", 180.00),
+                new Product.StockInfo(350, 35)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Luminous Path", "LMP", 75.00),
-                new StockInfo(600, 60)
+                new Product.ProductInfo("Luminous Path", "LMP", 75.00),
+                new Product.StockInfo(600, 60)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Silent Harmony", "SHY", 90.00),
-                new StockInfo(500, 50)
+                new Product.ProductInfo("Silent Harmony", "SHY", 90.00),
+                new Product.StockInfo(500, 50)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Aurora Prism", "APR", 110.00),
-                new StockInfo(450, 500)
+                new Product.ProductInfo("Aurora Prism", "APR", 110.00),
+                new Product.StockInfo(450, 500)
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new ProductInfo("Celestial Pulse", "CPX", 130.00),
-                new StockInfo(400, 500)
+                new Product.ProductInfo("Celestial Pulse", "CPX", 130.00),
+                new Product.StockInfo(400, 500)
         ));
     }
 }

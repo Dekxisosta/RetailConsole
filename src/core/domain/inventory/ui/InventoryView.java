@@ -5,21 +5,11 @@ import core.shared.datastructures.*;
 import core.shared.ui.console.*;
 
 public class InventoryView extends ConsoleRenderer {
-    /**
-     * Public constructor, needs a builder for
-     * formats and stylized outputs
-     *
-     * @param builder
-     */
-    public InventoryView(ConsoleBuilder builder) {
-        super(builder);
-    }
-
-    public void showOldest(LinkedList<Product> inventory){
+    public void showOldest(RecordList<Product> inventory){
         showTableHeader();
         System.out.print(inventory.toString());
     }
-    public void showLatest(LinkedList<Product> inventory){
+    public void showLatest(RecordList<Product> inventory){
         showTableHeader();
         System.out.print(inventory.toStringReverse());
     }
@@ -29,8 +19,9 @@ public class InventoryView extends ConsoleRenderer {
     }
     private void showTableHeader(){
         System.out.print("""
+                ______________________________________________________________________________________________
                 Product ID | Product Name         | Manufacturer | Price   | Stock   | ROP   | Stock Status
-                ------------------------------------------------------------------------------------------
+                ----------------------------------------------------------------------------------------------
                 """);
     }
 }

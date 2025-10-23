@@ -1,7 +1,7 @@
 package core.domain.inventory.manager;
 
 import common.util.*;
-import core.domain.events.*;
+import core.domain.bindables.*;
 import core.domain.inventory.datastructures.*;
 import core.domain.inventory.model.*;
 import core.shared.datastructures.*;
@@ -13,33 +13,29 @@ import core.shared.dto.*;
  *
  * @see InventoryList
  * @see Product
- * @see LinkedList
- * @see LinkedList.ListException
+ * @see RecordList
+ * @see RecordList.ListException
  * @see ProductDTO
  */
-public class InventoryManager implements Event.Listener<ProductDTO> {
-    private final ProductTransferEvent<ProductDTO> productTransferEvent;
+public class InventoryManager {
     private final InventoryList<Product> inventory;
-
     /**
      * Public constructor for the inventory manager class
-     * @param productTransferEvent
      * @param inventory
      */
-    public InventoryManager(ProductTransferEvent<ProductDTO> productTransferEvent,
-                            InventoryList<Product> inventory) {
-        this.productTransferEvent = productTransferEvent;
+    public InventoryManager(InventoryList<Product> inventory) {
+        Events.StockReduction.addListener(this::handle);
+        Requests.OutOfStock.setSupplier(this::getOutOfStockProducts);
+        Requests.TotalProducts.setSupplier(this::getNumberOfProducts);
         this.inventory = inventory;
+
     }
 
-    /**
-     * Since inventory manager only listens to
-     * @param data
-     */
-    @Override
-    public void handle(ProductDTO data) {
-        Product product = inventory.get(data.getId());
-        product.getStockInfo().setAvailableStock(data.getStock());
+    public void handle(Object o) {
+        if(!(o instanceof ProductDTO)) return;
+        ProductDTO productDTO = (ProductDTO) o;
+        Product product = inventory.get(productDTO.getId());
+        product.getStockInfo().setAvailableStock(productDTO.getStock());
     }
 
     /* ===============================================
@@ -54,7 +50,7 @@ public class InventoryManager implements Event.Listener<ProductDTO> {
      */
     public void addProduct(Product product){
         inventory.add(product);
-        productTransferEvent.fire(convertProductToDTO(product));
+        Events.ProductAdded.fire(convertProductToDTO(product));
     }
 
     /**
@@ -73,10 +69,18 @@ public class InventoryManager implements Event.Listener<ProductDTO> {
     public Product findProductById(String id){
         try{
             return inventory.get(id);
-        }catch(LinkedList.ListException e){
+        }catch(RecordList.ListException e){
             Logger.log(e, Logger.Severity.NOTICE);
             return null;
         }
+    }
+
+    public RecordList<ProductDTO> getOutOfStockProducts(){
+        return inventory.getOutOfStockProducts().convertListToDTO();
+    }
+
+    public int getNumberOfProducts(){
+        return inventory.getNumberOfProducts();
     }
 
     /**
@@ -87,14 +91,14 @@ public class InventoryManager implements Event.Listener<ProductDTO> {
     public Product findProductByName(String name){
         try{
             return inventory.getProductByName(name);
-        }catch(LinkedList.ListException e){
+        }catch(RecordList.ListException e){
             Logger.log(e, Logger.Severity.NOTICE);
             return null;
         }
     }
 
     public void updateProductExternalReferences(Product product){
-        productTransferEvent.fire(convertProductToDTO(product));
+        Events.ProductUpdated.fire(convertProductToDTO(product));
     }
 
     public void updateAvailableStock(Product product, int newValue){
@@ -122,7 +126,7 @@ public class InventoryManager implements Event.Listener<ProductDTO> {
     }
 
 
-    public LinkedList<Product> getInventory(){
+    public RecordList<Product> getInventory(){
         return inventory;
     }
 

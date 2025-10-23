@@ -1,13 +1,25 @@
 package core.domain.sales.ui.console;
 
 import core.domain.sales.model.*;
-import core.domain.sales.util.*;
 import core.shared.datastructures.*;
+import core.shared.id.*;
 import core.shared.ui.console.*;
 
 import java.io.*;
 
 public class SalesConsolePrompter extends ConsolePrompter {
+    /**
+     * Generates sales record IDs. This class extends the id generator
+     * abstraction which needs designated prefixes
+     * @see IDGenerator
+     */
+    public static class SalesRecordIDGenerator extends IDGenerator {
+        @Override
+        public String getPrefix(){
+            return "SAL";
+        }
+    }
+
     private final SalesRecordIDGenerator idGenerator;
     /**
      * Public constructor for ConsolePrompter. In this project, to remove
@@ -22,16 +34,18 @@ public class SalesConsolePrompter extends ConsolePrompter {
      * @param reader used for scanning inputs
      * @see BufferedReader
      */
-    public SalesConsolePrompter(BufferedReader reader, SalesRecordIDGenerator idGenerator) {
+    public SalesConsolePrompter(BufferedReader reader) {
         super(reader);
-        this.idGenerator = idGenerator;
+        this.idGenerator = new SalesRecordIDGenerator();
+    }
+
+    public String generateID(){
+        return idGenerator.generateID();
     }
 
     public SalesRecord getSalesRecord(){
         String id = idGenerator.generateID();
-        LinkedList<SalesItem> list = new LinkedList<>();
+        RecordList<SalesItem> list = new RecordList<>();
         return new SalesRecord(id, list);
     }
-
-
 }

@@ -1,13 +1,26 @@
-package core.domain.events;
+package core.domain.bindables;
+
+import core.shared.dto.*;
+
+
+public class Events {
+    private Events(){}
+    public static Event.StockReductionEvent StockReduction = new Event.StockReductionEvent();
+    public static Event.ProductAddedEvent ProductAdded = new Event.ProductAddedEvent();
+    public static Event.ProductUpdatedEvent ProductUpdated = new Event.ProductUpdatedEvent();
+}
+
 
 /**
  * A lightweight event dispatcher similar to Roblox's BindableEvent.
  * Listeners can connect to events and react when fired.
  * @param <T> the type of data passed to listeners
  */
-public class Event<T> {
+class Event<T> {
     private Listener<T>[] listeners;
-
+    public static class StockReductionEvent<T extends ProductDTO> extends Event<ProductDTO> {}
+    public static class ProductAddedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
+    public static class ProductUpdatedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
     /**
      * Functional Interface that ensures data is handled by any listener subscribed to the event.
      * @param <T> the type of data to be handled

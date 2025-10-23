@@ -44,6 +44,8 @@ public class AppRunner {
                 "Settings"
         };
 
+        renderer.showHero(AppConfig.PROGRAM_BANNER);
+
         while(true){
             renderer.showBanner(AppConfig.PROGRAM_NAME);
             renderer.showOptions(options);
@@ -60,7 +62,7 @@ public class AppRunner {
                 case "3",
                      "ANALYTICS",
                      "CHECK ANALYTICS"
-                        -> analyticsController.run();
+                        -> analyticsController.runMenu();
                 case "4",
                      "SETTINGS"
                         -> changeSettings();
@@ -80,7 +82,8 @@ public class AppRunner {
         String[] options = {
                 "Back to Main Menu",
                 "Toggle Ansi Colors",
-                "Change Program Name"
+                "Change Program Name",
+                "Change Program Tagline"
         };
 
         while(true){

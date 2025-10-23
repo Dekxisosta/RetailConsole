@@ -1,5 +1,6 @@
 package core.shared.dto;
 
+import common.util.*;
 import core.domain.api.model.Record;
 
 /**
@@ -27,4 +28,15 @@ public class ProductDTO implements Record {
     public String getName() {return name;}
     public double getPrice() {return price;}
     public int getStock() {return stock;}
+    @Override
+    public String toString() {
+        return String.format("""
+                    %s %-9s %s| %-45s
+                    """,
+                    Ansi.Color.DIM_WHITE.code() + Ansi.Format.REVERSE.code(),
+                    id,
+                    Ansi.Format.RESET.code(),
+                    name
+        );
+    }
 }

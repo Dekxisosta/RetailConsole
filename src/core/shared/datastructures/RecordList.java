@@ -5,9 +5,9 @@ import core.domain.api.model.Record;
 /**
  * Linked list data structure that handles list nodes with
  * two pointers. This is merely a mini implementation of
- * java's built-in LinkedList.
+ * java's built-in RecordList.
  *
- * To avoid redundant code, this LinkedList is tailored for
+ * To avoid redundant code, this RecordList is tailored for
  * model instances that extends the Record interface
  *
  * @version 1.2
@@ -15,7 +15,7 @@ import core.domain.api.model.Record;
  * @see Record
  * @see ListNode
  */
-public class LinkedList <T extends Record>{
+public class RecordList<T extends Record>{
     protected ListNode<T> head;
     protected ListNode<T> tail;
     protected int size;
@@ -57,7 +57,7 @@ public class LinkedList <T extends Record>{
      * does not insert values. Can be removed as it is an unnecessary declaration,
      * but to make intent clearer, is written as so
      */
-    public LinkedList(){}
+    public RecordList(){}
 
     /**
      * Inserts a valued node to the ending point of the list.
@@ -177,5 +177,47 @@ public class LinkedList <T extends Record>{
         node.setPrev(null);
 
         size--;
+    }
+
+    /**
+     * ListNode model with two pointers and stores a value of datatype T.
+     * To achieve a modular design, the group decided to use generic type
+     * parameters. This ensures that all three modules can have
+     * separate databases to foster a more decentralized design
+     *
+     * @param <T> data to be inputted
+     */
+    public static final class ListNode <T> {
+        private ListNode<T> next;
+        private ListNode<T> prev;
+        private T data;
+
+        public ListNode(T data) {
+            this.data = data;
+        }
+
+        // GETTERS
+        public ListNode<T> getNext() {
+            return next;
+        }
+        public ListNode<T> getPrev() {return prev;}
+        public T getData() {return data;}
+
+        // SETTERS
+        public void setData(T data) {
+            this.data = data;
+        }
+        public void setNext(ListNode<T> next) {this.next = next;}
+        public void setPrev(ListNode<T> prev) {this.prev = prev;}
+
+
+
+        /**
+         * Instead of the node's memory address, it'll instead
+         * show the value of its internal data field
+         * @return string value of its stored data
+         */
+        @Override
+        public String toString(){return data.toString();}
     }
 }

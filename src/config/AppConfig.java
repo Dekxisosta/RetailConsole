@@ -16,4 +16,16 @@ public final class AppConfig {
      * The program's name. To be used as a personalized name for the CLI tool
      */
     public static String PROGRAM_NAME = "Asacoco Retail Store CLI";
+
+    /**
+     * The program's tagline. To be used as a personalized tagline for the CLI tool
+     */
+    public static String PROGRAM_BANNER = """
+              .--.   .----.  .--.   .---.  .----.  .---.  .----.\s
+             / {} \\ { {__   / {} \\ /  ___}/  {}  \\/  ___}/  {}  \\
+            /  /\\  \\.-._} }/  /\\  \\\\     }\\      /\\     }\\      /
+            `-'  `-'`----' `-'  `-' `---'  `----'  `---'  `----'\s
+            Since 1969  - Over 420 Branches in the Philippines
+            ==========================================================
+            """;
 }
