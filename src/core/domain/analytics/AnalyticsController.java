@@ -26,7 +26,7 @@ public class AnalyticsController {
         };
 
         while(true){
-            view.showBanner(AppConfig.PROGRAM_NAME + ": Sales Menu");
+            view.showBanner(AppConfig.PROGRAM_NAME + ": Analytics Menu");
             view.showOptions(options);
             String choice = prompter.getString("choice").toUpperCase();
             switch(choice){
