@@ -1,4 +1,4 @@
-package core.domain.sales.ui;
+package core.domain.sales.ui.console;
 
 import core.domain.sales.model.*;
 import core.domain.sales.util.*;
@@ -7,7 +7,7 @@ import core.shared.ui.console.*;
 
 import java.io.*;
 
-public class SalesPrompter extends ConsolePrompter {
+public class SalesConsolePrompter extends ConsolePrompter {
     private final SalesRecordIDGenerator idGenerator;
     /**
      * Public constructor for ConsolePrompter. In this project, to remove
@@ -22,23 +22,16 @@ public class SalesPrompter extends ConsolePrompter {
      * @param reader used for scanning inputs
      * @see BufferedReader
      */
-    public SalesPrompter(BufferedReader reader, SalesRecordIDGenerator idGenerator) {
+    public SalesConsolePrompter(BufferedReader reader, SalesRecordIDGenerator idGenerator) {
         super(reader);
         this.idGenerator = idGenerator;
     }
 
     public SalesRecord getSalesRecord(){
-//        String id = idGenerator.generateID();
-//        LinkedList<ProductSale> itemsSold = new LinkedList<>();
-//        while(true){
-//            ProductSale productSold = getProductSale();
-//            itemsSold.add(productSold);
-//        }
-//
-//        return new SalesRecord();
+        String id = idGenerator.generateID();
+        LinkedList<SalesItem> list = new LinkedList<>();
+        return new SalesRecord(id, list);
     }
 
-    public ProductSale getProductSale(){
 
-    }
 }

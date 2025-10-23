@@ -13,11 +13,9 @@ import config.*;
  * @see Ansi
  */
 public final class Logger {
-
     /*
      * An internal enum for severity labels is utilized by the logger
      * to ensure consistency in documenting bugs in a program.
-     *
      * This makes the program scalable and maintainable
      */
     public enum Severity{
@@ -31,8 +29,7 @@ public final class Logger {
     }
 
     /*
-     * An internal enum for documenting intended outputs in the program
-     *
+     * An internal enum for documenting intended outputs in the program.
      * This makes the program scalable and maintainable
      */
     public enum Level{
@@ -48,6 +45,7 @@ public final class Logger {
 
     /**
      * Logs an exception with an appropriate severity label
+     *
      * @param e the exception caught
      * @param severity determines the error's hierarchy
      */
@@ -64,7 +62,7 @@ public final class Logger {
     /**
      * Logs a message with an appropriate level label
      * @param text the text of the log
-     * @param level determines the error's hierarchy
+     * @param level determines the depth of the message
      */
     public static void log(String title, String text, Level level){
         String label = formatLabel(level.name(), level.getColor());

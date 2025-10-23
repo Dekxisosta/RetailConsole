@@ -30,7 +30,7 @@ public class InventoryView extends ConsoleRenderer {
     private void showTableHeader(){
         System.out.print("""
                 Product ID | Product Name         | Manufacturer | Price   | Stock   | ROP   | Stock Status
-                --------------------------------------------------------------------------------------
+                ------------------------------------------------------------------------------------------
                 """);
     }
 }

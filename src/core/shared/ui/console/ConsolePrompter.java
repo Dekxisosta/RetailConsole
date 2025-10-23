@@ -165,7 +165,7 @@ public class ConsolePrompter {
      * @param inputType type of input to be prompted
      */
     private void showEnterPrompt(String inputType){
-        System.out.printf("%nEnter %s: ", inputType);
+        System.out.printf("Enter %s: ", inputType);
     }
 
 }

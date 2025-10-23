@@ -5,6 +5,15 @@ import core.domain.inventory.manager.*;
 import core.domain.inventory.model.*;
 import core.domain.inventory.ui.*;
 
+/**
+ * Controller class for the inventory module.
+ * Directs flow to where it should occur
+ *
+ * @see InventoryView
+ * @see InventoryPrompter
+ * @see InventoryManager
+ * @see InventoryUpdateController
+ */
 public class InventoryController {
     private final InventoryView view;
     private final InventoryPrompter prompter;
@@ -25,8 +34,8 @@ public class InventoryController {
         String[] options = {
             "Back to main menu",
             "Add product",
-            "View Latest Products",
-            "View Oldest Products",
+            "View Products by Latest",
+            "View Products by Oldest",
             "Update Product",
             "Remove product",
             "Search Product By ID",
@@ -44,10 +53,10 @@ public class InventoryController {
                 case "1", "ADD", "ADD PRODUCT"
                     -> manager.addProduct(prompter.getProduct());
 
-                case "2", "LATEST", "VIEW LATEST PRODUCTS"
+                case "2", "LATEST", "VIEW PRODUCTS BY LATEST"
                     -> view.showLatest(manager.getInventory());
 
-                case "3", "OLDEST", "VIEW OLDEST PRODUCTS"
+                case "3", "OLDEST", "VIEW PRODUCTS BY OLDEST"
                     -> view.showOldest(manager.getInventory());
 
                 case "4", "UPDATE", "UPDATE PRODUCT"
@@ -79,6 +88,4 @@ public class InventoryController {
             }
         }
     }
-
-
 }

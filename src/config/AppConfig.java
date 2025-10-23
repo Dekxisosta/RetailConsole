@@ -10,7 +10,10 @@ public final class AppConfig {
      * Flag for ansi support, ticked false since Codiva compiler does not
      * support Ansi
      */
-    public final static boolean IS_ANSI_SUPPORTED = true;
+    public static boolean IS_ANSI_SUPPORTED = true;
 
-    public final static String PROGRAM_NAME = "Asacoco Retail Store CLI";
+    /**
+     * The program's name. To be used as a personalized name for the CLI tool
+     */
+    public static String PROGRAM_NAME = "Asacoco Retail Store CLI";
 }

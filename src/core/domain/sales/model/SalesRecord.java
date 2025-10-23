@@ -6,27 +6,47 @@ import core.shared.datastructures.*;
 
 public class SalesRecord implements Record {
     private final String id;
-    private final LinkedList<ProductSale> productList;
-    private final double totalSales;
-    private final int totalStockSold;
+    private final LinkedList<SalesItem> productList;
+    private double totalSales;
+    private int totalStockSold;
 
     public SalesRecord(String id,
-                       LinkedList<ProductSale> productList,
-                       double totalSales,
-                       int totalStockSold) {
+                       LinkedList<SalesItem> productList) {
         this.id = id;
         this.productList = productList;
-        this.totalSales = totalSales;
-        this.totalStockSold = totalStockSold;
     }
-
+    public void add(SalesItem salesItem){productList.add(salesItem);}
     public String getId() {return id;}
+    public boolean isEmpty(){return productList.isEmpty();}
+    public void incrementTotalSales(double sales){totalSales += sales;}
+    public void incrementTotalStockSold(int stockSold) {totalStockSold += stockSold;}
+
+
+    public String toStringWithList(){
+        return String.format("""
+                         ____________________________________________________________________
+                        | SALE ID    | TOTAL SALES               | TOTAL STOCK SOLD          |         
+                        |--------------------------------------------------------------------|
+                        |%s %-10s %s| %-25.2f | %-25d |
+                        +--------------------------------------------------------------------+
+                         PRODUCT ID  | PRODUCT NAME              | PRICE      | QTY   | TOTAL             
+                         --------------------------------------------------------------------
+                        %s
+                        """,
+                Ansi.Color.PINK.code() + Ansi.Format.REVERSE.code(),
+                id,
+                Ansi.Format.RESET.code(),
+                totalSales,
+                totalStockSold,
+                productList.toString()
+        );
+    }
 
     public String toString(){
         return String.format("""
-                %s %-9s %s| %-10.2f | %-10s
+                %s %-10s %s| %-25.2f | %-25d 
                 """,
-                Ansi.Color.DIM_WHITE.code() + Ansi.Format.REVERSE.code(),
+                Ansi.Color.PINK.code() + Ansi.Format.REVERSE.code(),
                 id,
                 Ansi.Format.RESET.code(),
                 totalSales,

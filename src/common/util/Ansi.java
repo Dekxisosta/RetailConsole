@@ -22,14 +22,16 @@ public final class Ansi {
         REVERSE("\u001B[7m"),
         RESET("\u001B[0m");
 
-        private final String code;
+        private String code;
 
+        /** Ensures toggled state reflects in the whole system */
         Format(String code) {
-            this.code = AppConfig.IS_ANSI_SUPPORTED ? code : "";
+            this.code = code;
         }
+
         /** @return the code for the ansi */
         public String code() {
-            return code;
+            return AppConfig.IS_ANSI_SUPPORTED? code: "";
         }
     }
 
@@ -44,15 +46,16 @@ public final class Ansi {
         YELLOW("\u001B[93m"),
         PINK("\u001B[95m");
 
-        private final String code;
+        private String code;
 
+        /** Ensures toggled state reflects in the whole system */
         Color(String code) {
-            this.code = AppConfig.IS_ANSI_SUPPORTED ? code : "";
+            this.code = code;
         }
 
         /** @return the code for the ansi */
         public String code() {
-            return code;
+            return AppConfig.IS_ANSI_SUPPORTED? code: "";
         }
 
         /**

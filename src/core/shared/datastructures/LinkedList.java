@@ -37,6 +37,22 @@ public class LinkedList <T extends Record>{
     }
 
     /**
+     * Checks if the list contains an existing id
+     * @param id the id to be checked
+     * @return true if the list contains the id, otherwise false
+     */
+    public boolean contains(String id) {
+        if (isEmpty()) return false;
+
+        ListNode<T> current = head;
+        while (current != null) {
+            if (current.getData().getId().equals(id)) return true;
+            current = current.getNext();
+        }
+        return false;
+    }
+
+    /**
      * Public constructor of the class. When instantiated, it
      * does not insert values. Can be removed as it is an unnecessary declaration,
      * but to make intent clearer, is written as so

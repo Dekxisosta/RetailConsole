@@ -4,6 +4,12 @@ import core.domain.inventory.model.*;
 import core.shared.datastructures.*;
 
 public class InventoryList<T extends Product> extends LinkedList<T> {
+
+    /**
+     * Gets product by name given the name
+     * @param name
+     * @return
+     */
     public Product getProductByName(String name){
         ListNode<T> current = head;
         while(current != null){

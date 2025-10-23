@@ -27,6 +27,9 @@ public class InventoryUpdateController {
         this.view = view;
     }
 
+    /**
+     * Update menu loop
+     */
     public void updateMenu(){
         Product product = getProductToUpdate();
         if(product==null) return;
@@ -38,7 +41,10 @@ public class InventoryUpdateController {
             String choice = prompter.getString("choice").toUpperCase();
 
             switch(choice){
-                case "0", "BACK", "BACK TO MAIN MENU" -> { return; }
+                case "0", "BACK", "BACK TO MAIN MENU"
+                        -> { manager.updateProductExternalReferences(product);
+                            return;
+                }
 
                 case "1", "NAME", "CHANGE PRODUCT NAME"
                         -> manager.updateName(product,
