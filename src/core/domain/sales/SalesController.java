@@ -5,6 +5,18 @@ import config.*;
 import core.domain.sales.model.*;
 import core.domain.sales.ui.console.*;
 
+/**
+ * Class that controls the flow of the sales module.
+ * Redirects functionality to appropriate classes
+ *
+ * A separate controller is created to accommodate
+ * the recording of sales
+ *
+ * @see SalesConsoleView
+ * @see SalesConsolePrompter
+ * @see SalesManager
+ * @see SalesRecordController
+ */
 public class SalesController {
     private final SalesConsoleView view;
     private final SalesConsolePrompter prompter;
@@ -20,6 +32,7 @@ public class SalesController {
         this.recordController = new SalesRecordController(view, prompter, manager);
     }
 
+    /** Runs the record menu */
     public void runMenu(){
         String[] options = {
                 "Back to Main Menu",
@@ -34,10 +47,8 @@ public class SalesController {
             view.showOptions(options);
             String choice = prompter.getString("choice").toUpperCase();
             switch(choice){
-
                 case "0", "BACK", "BACK TO MAIN MENU"
                         -> { return; }
-
                 case "1",
                      "RECORD",
                      "RECORD A SALE"
@@ -61,6 +72,14 @@ public class SalesController {
         }
     }
 }
+
+/**
+ * Separate controller for recording a sale.
+ *
+ * @see SalesConsoleView
+ * @see SalesConsolePrompter
+ * @see SalesManager
+ */
 class SalesRecordController {
     private final SalesConsoleView view;
     private final SalesConsolePrompter prompter;
@@ -74,6 +93,9 @@ class SalesRecordController {
         this.manager = manager;
     }
 
+    /**
+     *
+     */
     public void runRecordMenu(){
         SalesRecord record = prompter.getSalesRecord();
 

@@ -7,6 +7,11 @@ import core.domain.inventory.controller.*;
 import core.domain.sales.*;
 import core.shared.ui.console.*;
 
+/**
+ * The class that contains the root menu of the program.
+ * This contains the main controllers of all modules to
+ * ensure quick, easy and direct access
+ */
 public class AppRunner {
     private final ConsoleRenderer renderer;
     private final ConsolePrompter prompter;
@@ -78,6 +83,11 @@ public class AppRunner {
             }
         }
     }
+
+    /**
+     * Separate method for changing settings
+     * at program's runtime
+     */
     private void changeSettings(){
         String[] options = {
                 "Back to Main Menu",

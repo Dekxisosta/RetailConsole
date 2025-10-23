@@ -71,13 +71,13 @@ public class InventoryController {
                 case "6", "SEARCH" ,"SEARCH PRODUCT BY ID"
                     -> {
                     Product product = manager.findProductById(prompter.getString("id"));
-                    if(product!=null) view.showProduct(product);
+                    view.showProduct(product);
                 }
 
                 case "7", "SEARCH PRODUCT BY NAME"
                         -> {
                     Product product = manager.findProductByName(prompter.getString("name"));
-                    if(product!=null) view.showProduct(product);
+                    view.showProduct(product);
                 }
 
                 default

@@ -3,6 +3,11 @@ package core.domain.analytics;
 import common.util.*;
 import config.*;
 
+/**
+ * Controller class / orchestrator layer of the analytics module,
+ * fosters communication between relevant parties
+ * (e.g. view gets the list to be shown from the manager)
+ */
 public class AnalyticsController {
     private final AnalyticsConsoleView view;
     private final AnalyticsConsolePrompter prompter;

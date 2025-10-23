@@ -4,19 +4,15 @@ import core.shared.ui.console.*;
 
 import java.io.*;
 
+/**
+ * Class for prompting inputs, made especially for the analytics module.
+ * For now, it just extends the {@link ConsolePrompter} class to use its
+ * primary built-in methods
+ */
 public class AnalyticsConsolePrompter extends ConsolePrompter {
     /**
-     * Public constructor for ConsolePrompter. In this project, to remove
-     * the necessity of creating apis, interfaces or abstractions
-     * for contracted methods, this reader class is only limited to
-     * console
-     * <p>
-     * If this project is intended to scale further to a GUI implementation,
-     * then simply replace the console prompter attached to the catch statement
-     * of the wrapper utility at the bottommost part of the code
-     *
-     * @param reader used for scanning inputs
-     * @see BufferedReader
+     * Passes a buffered reader to its superclass, which is ConsolePrompter
+     * @param reader
      */
     public AnalyticsConsolePrompter(BufferedReader reader) {
         super(reader);

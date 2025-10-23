@@ -33,10 +33,7 @@ public final class Logger {
      * This makes the program scalable and maintainable
      */
     public enum Level{
-        NOTICE(Ansi.Color.YELLOW),
-        INFO(Ansi.Color.GREEN),
-        SYSTEM(Ansi.Color.DIM_WHITE),
-        DEBUG(Ansi.Color.PINK);
+        NOTICE(Ansi.Color.YELLOW);
 
         private Ansi.Color color;
         Level(Ansi.Color color){this.color = color;}
@@ -89,7 +86,6 @@ public final class Logger {
         if(doPrintStackTrace)
             e.printStackTrace();
     }
-
 
     // Formats a label in an intended format, adaptive to ansi support
     private static String formatLabel(String name, Ansi.Color color) {

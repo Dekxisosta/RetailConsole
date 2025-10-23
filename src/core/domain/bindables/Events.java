@@ -2,7 +2,13 @@ package core.domain.bindables;
 
 import core.shared.dto.*;
 
-
+/**
+ * Public class that houses singleton instances of events.
+ * Although, an unclean design pattern when it comes to wiring
+ * listeners, does its job and is simple enough to implement
+ *
+ * @version 1.0
+ */
 public class Events {
     private Events(){}
     public static Event.StockReductionEvent StockReduction = new Event.StockReductionEvent();
@@ -14,6 +20,8 @@ public class Events {
 /**
  * A lightweight event dispatcher similar to Roblox's BindableEvent.
  * Listeners can connect to events and react when fired.
+ * It is similar to how consumers work in {@link java.util.function.Consumer}
+ *
  * @param <T> the type of data passed to listeners
  */
 class Event<T> {
@@ -38,21 +46,24 @@ class Event<T> {
     }
 
     /**
-     * Optional constructor — allows passing initial listeners.
-     *
-     * @param listeners handlers that implement Listener
-     */
-    @SafeVarargs
-    public Event(Listener<T>... listeners) {
-        this.listeners = listeners;
-    }
-
-    /**
      * Adds a new listener by replacing the listener array with a new one.
+     *
+     * Unlike an arraylist implementation, this is unclean for it
+     * creates, transfers and changes references into another container
+     * whenever a listener is added.
+     *
+     * However, since we're merely adding a
+     * few amount of listeners to an event. It's not much different from
+     * the performance cost of the dynamic memory allocation in
+     * a normal arraylist.
+     *
+     * A linked list is a good candidate for a more dynamic approach in this
+     * scenario, but to avoid longer code, the base implementation of the linked
+     * list requires the type parameter to extend the {@link core.domain.api.model.Record}
+     * which is the basis for all models inside the domain
      *
      * @param listener the listener to add
      */
-    @SuppressWarnings("unchecked")
     public void addListener(Listener<T> listener) {
         int oldLength = listeners.length;
         Listener<T>[] newListeners = (Listener<T>[]) new Listener[oldLength + 1];

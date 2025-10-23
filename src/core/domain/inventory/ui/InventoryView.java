@@ -14,6 +14,7 @@ public class InventoryView extends ConsoleRenderer {
         System.out.print(inventory.toStringReverse());
     }
     public void showProduct(Product product){
+        if(product==null) return;
         showTableHeader();
         System.out.print(product.toString());
     }

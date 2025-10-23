@@ -7,9 +7,10 @@ import config.*;
  * look more professional, since most terminals support
  * ANSI or escape codes for formatting, this app utilizes as such
  * but since codiva.io does not support ANSI, a boolean flag for
- * Ansi support lives in central app config
+ * Ansi support lives in central app config,
+ * which is ultimately ticked as false in default
  *
- * @see AppConfig
+ * @see AppConfig tells if the app should do Ansi colors and formats
  */
 public final class Ansi {
     // Prevents instantiation
