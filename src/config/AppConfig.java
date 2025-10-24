@@ -15,7 +15,7 @@ public final class AppConfig {
     /**
      * The program's name. To be used as a personalized name for the CLI tool
      */
-    public static String PROGRAM_NAME = "Asacoco Retail Store CLI";
+    public static String PROGRAM_NAME = "ASACOCO RETAIL CLI STORE";
 
     /**
      * The program's tagline. To be used as a personalized tagline for the CLI tool

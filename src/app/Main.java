@@ -1,7 +1,9 @@
 package app;
 
 import common.util.*;
-import core.domain.analytics.*;
+import core.domain.analytics.controller.*;
+import core.domain.analytics.manager.*;
+import core.domain.analytics.ui.*;
 import core.domain.inventory.controller.*;
 import core.domain.inventory.datastructures.*;
 import core.domain.inventory.manager.*;
@@ -154,62 +156,65 @@ public class Main {
                                          InventoryPrompter productIDGenerator) {
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Lumen Pack", "LUM", 50.00),
-                new Product.StockInfo(1000, 100)
+                new Product.ProductInfo("Hatsune Miku", "WorldIsMine", 149.99),
+                new Product.StockInfo(0, 50) // out of stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Colorful Sky", "CSK", 80.00),
-                new Product.StockInfo(30, 50)
+                new Product.ProductInfo("Megurine Luka", "JustBeFriend", 129.50),
+                new Product.StockInfo(25, 40) // low stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Echoes of Time", "EOT", 120.00),
-                new Product.StockInfo(0, 30)
+                new Product.ProductInfo("Kagamine Rin", "Meltdown", 99.00),
+                new Product.StockInfo(500, 100) // plenty available
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Chromatic Dreams", "CDM", 200.00),
-                new Product.StockInfo(300, 20)
+                new Product.ProductInfo("Kagamine Len", "EvilServant", 109.75),
+                new Product.StockInfo(10, 30) // low stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Prismatic Night", "PNG", 150.00),
-                new Product.StockInfo(400, 40)
+                new Product.ProductInfo("IA", "SixTrillion", 179.00),
+                new Product.StockInfo(300, 80) // plenty
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Eternal Voyage", "EVG", 180.00),
-                new Product.StockInfo(350, 35)
+                new Product.ProductInfo("GUMI", "Echo", 119.99),
+                new Product.StockInfo(50, 50) // average stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Luminous Path", "LMP", 75.00),
-                new Product.StockInfo(600, 60)
+                new Product.ProductInfo("MEIKO", "ChangeMe", 89.99),
+                new Product.StockInfo(0, 40) // out of stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Silent Harmony", "SHY", 90.00),
-                new Product.StockInfo(500, 50)
+                new Product.ProductInfo("KAITO", "Cantarella", 139.99),
+                new Product.StockInfo(200, 50) // available
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Aurora Prism", "APR", 110.00),
-                new Product.StockInfo(450, 500)
+                new Product.ProductInfo("Teto Kasane", "TripleBaka", 79.50),
+                new Product.StockInfo(5, 20) // very low stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Celestial Pulse", "CPX", 130.00),
-                new Product.StockInfo(400, 500)
+                new Product.ProductInfo("Fukase", "GhostRule", 159.49),
+                new Product.StockInfo(450, 60) // plenty
         ));
+
     }
+
+    public static void
 }

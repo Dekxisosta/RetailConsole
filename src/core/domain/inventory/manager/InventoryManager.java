@@ -21,31 +21,39 @@ public class InventoryManager {
     private final InventoryList<Product> inventory;
     /**
      * Public constructor for the inventory manager class
-     * @param inventory
+     *
+     * @param inventory the database/list used by the class
      */
     public InventoryManager(InventoryList<Product> inventory) {
-        Events.StockReduction.addListener(this::handle);
-        Requests.OutOfStock.setSupplier(this::getOutOfStockProducts);
+        Events.StockReduction.addListener(this::handleStockReduction);
+        Requests.OutOfStock.setSupplier(this::getOutOfStockProductsForDataTransfer);
         Requests.TotalProducts.setSupplier(this::getNumberOfProducts);
         this.inventory = inventory;
 
     }
 
-    public void handle(Object o) {
+    /**
+     * Handles incoming data about stock reduction from the sales module.
+     * However, it's not verified whether it really came from the sales
+     * module as the {@link Events} class is a simple implementation
+     * of an event system. The method only assumes that event fires are supposed
+     * to be a ProductDTO
+     *
+     * @param o an unverified data type assumed to be a ProductDTO,
+     *          which contains new stock value
+     */
+    public void handleStockReduction(Object o) {
         if(!(o instanceof ProductDTO)) return;
         ProductDTO productDTO = (ProductDTO) o;
         Product product = inventory.get(productDTO.getId());
         product.getStockInfo().setAvailableStock(productDTO.getStock());
     }
 
-    /* ===============================================
-     *  INVENTORY MANAGER PUBLIC APIs
-     ================================================*/
-
     /**
      * Adds a product to the last position of the list.
-     * This also makes publisher fire a Data Transfer Object
+     * This also makes the productAddedEvent fire a Data Transfer Object
      * for other modules to listen to
+     *
      * @param product the product to be added
      */
     public void addProduct(Product product){
@@ -54,12 +62,19 @@ public class InventoryManager {
     }
 
     /**
+     * Removes a product from the list.
+     * This also makes the productAddedEvent fire a Data Transfer Object
+     * for other modules to handle
      *
-     * The publisher doesn't reflect product removal.
-     * @param id
+     * @param id the id to be searched for product removal
      */
     public void removeProduct(String id){
-        inventory.remove(id);
+        try{
+            Product product = inventory.remove(id);
+            Events.ProductRemoved.fire(convertProductToDTO(product));
+        }catch(RecordList.ListException e){
+            Logger.log(e, Logger.Severity.NOTICE);
+        }
     }
 
     /**
@@ -75,7 +90,12 @@ public class InventoryManager {
         }
     }
 
-    public RecordList<ProductDTO> getOutOfStockProducts(){
+    /**
+     * Gets a ProductDTO recordList containing all instances of
+     * products
+     * @return
+     */
+    public RecordList<ProductDTO> getOutOfStockProductsForDataTransfer(){
         return inventory.getOutOfStockProducts().convertListToDTO();
     }
 
@@ -97,7 +117,7 @@ public class InventoryManager {
         }
     }
 
-    public void updateProductExternalReferences(Product product){
+    public void fireProductUpdatedEvent(Product product){
         Events.ProductUpdated.fire(convertProductToDTO(product));
     }
 

@@ -3,75 +3,111 @@ package core.shared.ui.console;
 import common.util.*;
 
 /**
- * Renderer class meant to be extended by controllers in different modules.
- * May scale more if the need arises
+ * Base renderer class for console-based UIs.
+ * <p>
+ * {@code ConsoleRenderer} provides general-purpose utilities
+ * for rendering menus, banners, and text output.
+ * It is intended to be extended by presentation-layer classes
+ * across different modules.
+ * <p>
+ * This class delegates most string formatting to the
+ * {@link ConsoleBuilder} utility, which handles styling and layout.
+ *
  * @version 1.0
  * @see Ansi
  */
 public class ConsoleRenderer {
-    private ConsoleBuilder builder;
+    private final ConsoleBuilder builder;
 
     /**
-     * Public constructor, needs a builder for
-     * formats and stylized outputs
+     * Constructs a new {@code ConsoleRenderer} with its
+     * own internal {@link ConsoleBuilder} instance.
+     * <p>
+     * This builder handles stylized formatting for menus
+     * and text output.
      */
     public ConsoleRenderer() {
         this.builder = new ConsoleBuilder();
     }
+
     /**
-     * Shows numbered options 1-n, then 0, reserved
-     * for back or exit options
-     * @param options the list of options to be shown
+     * Displays a numbered list of options.
+     * <p>
+     * The numbering starts from 1 and ends with 0, which is reserved
+     * for “Back” or “Exit” type options.
+     *
+     * @param options the list of options to display,
+     *                where {@code options[0]} is reserved for 0.
      */
-    public void showOptions(String[] options){
-        for(int i = 1; i < options.length; i++){
+    public void showOptions(String[] options) {
+        for (int i = 1; i < options.length; i++) {
             System.out.println(builder.buildOption(i, options[i]));
         }
         System.out.println(builder.buildOption(0, options[0]));
     }
 
     /**
-     * Shows a banner with the title
-     * @param title
+     * Displays a stylized banner for a given title.
+     *
+     * @param title the text to display inside the banner
      */
-    public void showBanner(String title){
+    public void showBanner(String title) {
         System.out.print(builder.buildBanner(title));
     }
 
+    /**
+     * Displays a standalone hero banner or any preformatted text.
+     * <p>
+     * This method is typically used for ASCII art or
+     * large introductory banners.
+     *
+     * @param heroBanner the text or banner to display
+     */
     public void showHero(String heroBanner) {
         System.out.println(heroBanner);
     }
 }
 
 /**
- * Builder/Factory class for creating stylized strings. Also includes utilities
- * for getting lengths
+ * Utility class for building stylized console strings.
+ * <p>
+ * Provides methods for generating banners, option lists,
+ * and formatted titles using ANSI escape codes.
+ * <p>
+ * This class is package-private, as it is only meant to
+ * support {@link ConsoleRenderer}.
  */
 class ConsoleBuilder {
+
     /**
-     * Gets banner length from the different parts that contain the title,
-     * inclusive of title
+     * Computes the total border length for a banner.
+     * <p>
+     * The length is determined by summing the left and right border
+     * lengths, the title length, and twice the padding value.
      *
-     * @param leftBorder border on the left
-     * @param rightBorder border on the right
-     * @param title the title to be wrapped in banner creation
-     * @param padding gets padding length, multiplied by two
-     * @return total border length
+     * @param leftBorder  the left border string
+     * @param rightBorder the right border string
+     * @param title       the title text inside the banner
+     * @param padding     the amount of space on each side of the title
+     * @return the total border length
      */
-    public int getBorderLength(String leftBorder, String rightBorder, String title, int padding){
+    public int getBorderLength(String leftBorder, String rightBorder, String title, int padding) {
         return title.length()
                 + leftBorder.length()
                 + rightBorder.length()
                 + (padding * 2);
     }
 
-
-
     /**
-     * Creates a stylized banner for param title
-     * @param title the text inside the banner
+     * Builds a stylized banner with a given title.
+     * <p>
+     * The banner is surrounded by borders and includes
+     * formatted ANSI styling.
+     *
+     * @param title the text to display in the banner
+     * @return a formatted banner string
      */
-    public String buildBanner (String title){
+    public String buildBanner(String title) {
         String leftBorder = "{|";
         String rightBorder = "|}";
         int padding = 2;
@@ -88,14 +124,13 @@ class ConsoleBuilder {
         );
     }
 
-
-
     /**
-     * Builds a title with Ansi
-     * @param title the title to be wrapped
-     * @return title with formatting, only if ansi_supported is ticked true
+     * Builds a title string using ANSI formatting.
+     *
+     * @param title the text to format
+     * @return the formatted title string
      */
-    public String buildTitle(String title){
+    public String buildTitle(String title) {
         return String.format(
                 "%s %s %s",
                 Ansi.Color.DIM_WHITE.code() + Ansi.Format.REVERSE.code(),
@@ -104,26 +139,25 @@ class ConsoleBuilder {
         );
     }
 
-
-
     /**
-     * Creates a border
-     * @param symbol the repeated symbol or char
-     * @param len the number of repetitions
-     * @return char repeated for len times
+     * Creates a borderline made of a repeated character.
+     *
+     * @param symbol the character to repeat
+     * @param len    the number of repetitions
+     * @return the generated border string
      */
-    public String buildBorder(char symbol, int len){
+    public String buildBorder(char symbol, int len) {
         return String.valueOf(symbol).repeat(len);
     }
 
-
-
     /**
-     * Builds an option, utility for show options method
-     * @param index the index to be printed out
-     * @param option the text of the option
+     * Builds a single menu option line.
+     *
+     * @param index  the option index
+     * @param option the description text for the option
+     * @return a formatted option string
      */
-    public String buildOption(int index, String option){
-        return String.format("[%d] %s", index,  option);
+    public String buildOption(int index, String option) {
+        return String.format("[%d] %s", index, option);
     }
 }

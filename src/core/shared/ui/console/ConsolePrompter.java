@@ -2,6 +2,7 @@ package core.shared.ui.console;
 
 import java.io.*;
 import common.util.Logger;
+import common.util.functions.*;
 
 /**
  * The console prompter includes low-level parsers. This class
@@ -21,21 +22,13 @@ public class ConsolePrompter {
     private BufferedReader reader;
 
     /**
-     * A custom functional interface that mimics {@link java.util.function.Supplier},
-     * but allows its {@code get()} method to throw an {@link IOException}.
-     *
-     * <p>This is useful for creating wrapper methods that supply a value
-     * while handling checked I/O operations.</p>
-     *
-     * @param <T> the type of value supplied
+     * Functional interface for getting return values
+     * @param <T> type of data to be supplied
      */
     @FunctionalInterface
     interface Supplier<T>{
         T get() throws IOException;
     }
-
-
-
     /**
      * Public constructor for ConsolePrompter. In this project, to remove
      * the necessity of creating apis, interfaces or abstractions
@@ -53,8 +46,6 @@ public class ConsolePrompter {
         this.reader = reader;
     }
 
-
-
     /**
      * Gets a string, if empty then prompt again
      *
@@ -68,19 +59,6 @@ public class ConsolePrompter {
             else return line;
         });
     }
-
-
-
-    /**
-     * Gets a long primitive data type
-     *
-     * @param inputType the type of long to be supplied (e.g. Product ID)
-     * @return supplied long value
-     */
-    public long getLong(String inputType){
-        return supply(inputType, ()-> Long.parseLong(readLine()));
-    }
-
 
 
     /**

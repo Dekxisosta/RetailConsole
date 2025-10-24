@@ -6,9 +6,11 @@ import core.shared.dto.*;
 
 public class InventoryList<T extends Product> extends RecordList<T> {
     /**
-     * Gets product by name given the name
-     * @param name
-     * @return
+     * Gets the first occurrence of a product that contains the
+     * name to be searched
+     *
+     * @param name the name of to be searched
+     * @return the first occurrence of  which contains
      */
     public Product getProductByName(String name){
         ListNode<T> current = head;
@@ -21,6 +23,12 @@ public class InventoryList<T extends Product> extends RecordList<T> {
         throw new ListException("Unable to find product with name " + name);
     }
 
+    /**
+     * Gets the total available stock in the inventory list
+     *
+     * @return an int containing the number of the
+     * total amount of available stock
+     */
     public int getNumberOfProducts(){
         int num = 0;
         ListNode<T> current = head;
@@ -31,6 +39,10 @@ public class InventoryList<T extends Product> extends RecordList<T> {
         return num;
     }
 
+    /**
+     *
+     * @return
+     */
     public InventoryList<Product> getOutOfStockProducts(){
         InventoryList<Product> list = new InventoryList<>();
 
@@ -43,6 +55,11 @@ public class InventoryList<T extends Product> extends RecordList<T> {
         return list;
     }
 
+    /**
+     * Gives a RecordList composed of ProductDTOs converted inventory list to a
+     *
+     * @return RecordList of ProductDTOs
+     */
     public RecordList<ProductDTO> convertListToDTO(){
         RecordList<ProductDTO> list = new RecordList<>();
 

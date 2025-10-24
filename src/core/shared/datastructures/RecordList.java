@@ -78,11 +78,14 @@ public class RecordList<T extends Record>{
     }
 
     /**
-     * Removes the node with the specified id from this list
+     * Removes the node with the specified id from this list,
+     * also returns the object removed
      * @param id the location of the node to be removed
      */
-    public void remove(String id) throws ListException{
-        removeNode(getNodeWithId(id));
+    public T remove(String id) throws ListException{
+        ListNode<T> temp = getNodeWithId(id);
+        removeNode(temp);
+        return temp.getData();
     }
 
     /**

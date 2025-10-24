@@ -1,4 +1,4 @@
-package core.domain.analytics;
+package core.domain.analytics.manager;
 
 import core.domain.bindables.*;
 import core.shared.datastructures.*;

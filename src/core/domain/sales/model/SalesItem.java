@@ -3,6 +3,16 @@ package core.domain.sales.model;
 import common.util.*;
 import core.domain.api.model.Record;
 
+/**
+ * Represents a single product entry within a sales record.
+ *
+ * Each {@code SalesItem} stores information about a product that was sold
+ * during a transaction — including its ID, name, unit price, quantity sold,
+ * and the computed total price for that line item.
+ *
+ * This class is immutable and designed primarily for read/display purposes
+ * once the sale has been recorded.
+ */
 public class SalesItem implements Record {
     private final String id;
     private final String name;

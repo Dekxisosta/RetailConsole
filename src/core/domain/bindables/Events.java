@@ -14,6 +14,7 @@ public class Events {
     public static Event.StockReductionEvent StockReduction = new Event.StockReductionEvent();
     public static Event.ProductAddedEvent ProductAdded = new Event.ProductAddedEvent();
     public static Event.ProductUpdatedEvent ProductUpdated = new Event.ProductUpdatedEvent();
+    public static Event.ProductRemovedEvent ProductRemoved = new Event.ProductRemovedEvent();
 }
 
 
@@ -29,6 +30,7 @@ class Event<T> {
     public static class StockReductionEvent<T extends ProductDTO> extends Event<ProductDTO> {}
     public static class ProductAddedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
     public static class ProductUpdatedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
+    public static class ProductRemovedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
     /**
      * Functional Interface that ensures data is handled by any listener subscribed to the event.
      * @param <T> the type of data to be handled
@@ -40,6 +42,7 @@ class Event<T> {
 
     /**
      * Default constructor — starts with an empty listener array.
+     * This ensures that when the fire method is fired, nothing will be iterated
      */
     public Event() {
         this.listeners = (Listener<T>[]) new Listener[0];
@@ -49,7 +52,7 @@ class Event<T> {
      * Adds a new listener by replacing the listener array with a new one.
      *
      * Unlike an arraylist implementation, this is unclean for it
-     * creates, transfers and changes references into another container
+     * creates, transfers and changes references to another container
      * whenever a listener is added.
      *
      * However, since we're merely adding a

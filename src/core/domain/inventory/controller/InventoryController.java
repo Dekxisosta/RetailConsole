@@ -125,10 +125,9 @@ public class InventoryController {
 
                 switch(choice){
                     case "0", "BACK", "BACK TO MAIN MENU"
-                            -> { manager.updateProductExternalReferences(product);
+                            -> { manager.fireProductUpdatedEvent(product);
                                 return;
                     }
-
                     case "1", "NAME", "CHANGE PRODUCT NAME"
                             -> manager.updateName(product,
                             prompter.getString("new product name"));

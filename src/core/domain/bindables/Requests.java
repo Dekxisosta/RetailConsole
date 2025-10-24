@@ -4,11 +4,15 @@ import core.shared.datastructures.*;
 import core.shared.dto.*;
 
 /**
- * A lightweight query service similar to Roblox's BindableFunction.
- * Allows registering a handler that processes requests and returns responses.
+ * A lightweight request service similar to Roblox's BindableFunction.
+ * Allows registering a Supplier that processes requests and returns responses.
+ * Acts like {@link java.util.function.Supplier} to foster modularized approach
+ *
+ * @version 1.0
+ * @see Request
  */
-
 public final class Requests {
+    // List of all requests available in the system
     public static final Request.TotalProductsRequest TotalProducts = new Request.TotalProductsRequest();
     public static final Request.TotalSalesRequest TotalSales = new Request.TotalSalesRequest();
     public static final Request.TopSellingProductRequest TopSellingProduct = new Request.TopSellingProductRequest();
@@ -16,6 +20,11 @@ public final class Requests {
 
     private Requests() {} // prevent instantiation
 }
+
+/**
+ * Request class that defines a Request's functions
+ * @param <T>
+ */
 class Request<T> {
     public static class OutOfStockRequest<T extends RecordList<ProductDTO>> extends Request<RecordList<ProductDTO>> {}
     public static class TopSellingProductRequest<T extends String> extends Request<String> {}
@@ -26,6 +35,7 @@ class Request<T> {
 
     /**
      * Functional Interface that defines how a query handles a request.
+     *
      * @param <T> the input type
      */
     @FunctionalInterface

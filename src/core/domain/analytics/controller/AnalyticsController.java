@@ -1,12 +1,19 @@
-package core.domain.analytics;
+package core.domain.analytics.controller;
 
 import common.util.*;
 import config.*;
+import core.domain.analytics.manager.*;
+import core.domain.analytics.ui.*;
 
 /**
  * Controller class / orchestrator layer of the analytics module,
  * fosters communication between relevant parties
  * (e.g. view gets the list to be shown from the manager)
+ *
+ * @version 1.0
+ * @see AnalyticsConsoleView
+ * @see AnalyticsConsolePrompter
+ * @see AnalyticsManager
  */
 public class AnalyticsController {
     private final AnalyticsConsoleView view;
