@@ -2,8 +2,8 @@ package core.domain.sales.ui.console;
 
 import common.util.*;
 import config.*;
+import core.domain.api.datastructures.*;
 import core.domain.sales.model.*;
-import core.shared.datastructures.*;
 import core.shared.ui.console.*;
 
 /**

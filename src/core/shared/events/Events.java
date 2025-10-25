@@ -1,6 +1,6 @@
-package core.domain.bindables;
+package core.shared.events;
 
-import core.shared.dto.*;
+import core.api.dto.*;
 
 /**
  * Public class that houses singleton instances of events.
@@ -31,6 +31,7 @@ class Event<T> {
     public static class ProductAddedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
     public static class ProductUpdatedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
     public static class ProductRemovedEvent<T extends ProductDTO> extends Event<ProductDTO> {}
+
     /**
      * Functional Interface that ensures data is handled by any listener subscribed to the event.
      * @param <T> the type of data to be handled

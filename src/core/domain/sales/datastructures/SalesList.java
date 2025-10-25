@@ -1,7 +1,7 @@
 package core.domain.sales.datastructures;
 
+import core.domain.api.datastructures.*;
 import core.domain.sales.model.*;
-import core.shared.datastructures.*;
 
 public class SalesList <T extends ProductTotals> extends RecordList<T> {
     public double getTotalSales(){

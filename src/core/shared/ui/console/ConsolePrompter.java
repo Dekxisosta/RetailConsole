@@ -2,7 +2,6 @@ package core.shared.ui.console;
 
 import java.io.*;
 import common.util.Logger;
-import common.util.functions.*;
 
 /**
  * The console prompter includes low-level parsers. This class

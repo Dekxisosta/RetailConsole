@@ -1,4 +1,4 @@
-package core.domain.analytics.ui;
+package core.domain.analytics.ui.console;
 
 import core.shared.ui.console.*;
 

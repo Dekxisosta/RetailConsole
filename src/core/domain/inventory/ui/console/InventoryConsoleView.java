@@ -1,10 +1,10 @@
-package core.domain.inventory.ui;
+package core.domain.inventory.ui.console;
 
+import core.domain.api.datastructures.*;
 import core.domain.inventory.model.*;
-import core.shared.datastructures.*;
 import core.shared.ui.console.*;
 
-public class InventoryView extends ConsoleRenderer {
+public class InventoryConsoleView extends ConsoleRenderer {
     public void showOldest(RecordList<Product> inventory){
         showTableHeader();
         System.out.print(inventory.toString());

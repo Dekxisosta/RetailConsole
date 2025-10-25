@@ -1,7 +1,7 @@
-package core.domain.analytics.ui;
+package core.domain.analytics.ui.console;
 
-import core.shared.datastructures.*;
-import core.shared.dto.*;
+import core.api.dto.*;
+import core.domain.api.datastructures.*;
 import core.shared.ui.console.*;
 
 /**

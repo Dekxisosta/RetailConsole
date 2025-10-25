@@ -1,8 +1,8 @@
 package core.domain.analytics.manager;
 
-import core.domain.bindables.*;
-import core.shared.datastructures.*;
-import core.shared.dto.*;
+import core.api.dto.*;
+import core.domain.api.datastructures.*;
+import core.shared.requests.*;
 
 /**
  * Manager class for the analytics module.

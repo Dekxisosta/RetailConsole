@@ -3,17 +3,18 @@ package app;
 import common.util.*;
 import core.domain.analytics.controller.*;
 import core.domain.analytics.manager.*;
-import core.domain.analytics.ui.*;
+import core.domain.analytics.ui.console.*;
+import core.domain.api.datastructures.*;
 import core.domain.inventory.controller.*;
 import core.domain.inventory.datastructures.*;
 import core.domain.inventory.manager.*;
 import core.domain.inventory.model.*;
-import core.domain.inventory.ui.*;
-import core.domain.sales.*;
+import core.domain.inventory.ui.console.*;
+import core.domain.sales.controller.*;
 import core.domain.sales.datastructures.*;
+import core.domain.sales.manager.*;
 import core.domain.sales.model.*;
 import core.domain.sales.ui.console.*;
-import core.shared.datastructures.*;
 import core.shared.ui.console.*;
 
 import java.io.*;
@@ -122,8 +123,8 @@ public class Main {
      */
     public static InventoryController initInventoryModule(BufferedReader reader){
         InventoryList<Product> inventoryList = new InventoryList<>();
-        InventoryPrompter inventoryPrompter = new InventoryPrompter(reader);
-        InventoryView inventoryView = new InventoryView();
+        InventoryConsolePrompter inventoryPrompter = new InventoryConsolePrompter(reader);
+        InventoryConsoleView inventoryView = new InventoryConsoleView();
         InventoryManager inventoryManager = new InventoryManager(
                 inventoryList);
 
@@ -153,7 +154,7 @@ public class Main {
      * @param productIDGenerator product id generator instance to ensure immutable id references
      */
     public static void populateInventory(InventoryManager inventoryManager,
-                                         InventoryPrompter productIDGenerator) {
+                                         InventoryConsolePrompter productIDGenerator) {
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
                 new Product.ProductInfo("Hatsune Miku", "WorldIsMine", 149.99),

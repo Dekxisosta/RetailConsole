@@ -1,28 +1,28 @@
 package core.domain.inventory.controller;
 
 import common.util.*;
+import core.domain.api.datastructures.*;
 import core.domain.inventory.manager.*;
 import core.domain.inventory.model.*;
-import core.domain.inventory.ui.*;
-import core.shared.datastructures.*;
+import core.domain.inventory.ui.console.*;
 
 /**
  * Controller class for the inventory module.
  * Directs flow to where it should occur
  *
- * @see InventoryView
- * @see InventoryPrompter
+ * @see InventoryConsoleView
+ * @see InventoryConsolePrompter
  * @see InventoryManager
  * @see InventoryUpdateController
  */
 public class InventoryController {
-    private final InventoryView view;
-    private final InventoryPrompter prompter;
+    private final InventoryConsoleView view;
+    private final InventoryConsolePrompter prompter;
     private final InventoryManager manager;
     private final InventoryUpdateController updateController;
 
-    public InventoryController(InventoryView view,
-                               InventoryPrompter prompter,
+    public InventoryController(InventoryConsoleView view,
+                               InventoryConsolePrompter prompter,
                                InventoryManager manager) {
         this.view = view;
         this.prompter = prompter;
@@ -91,8 +91,8 @@ public class InventoryController {
 
     class InventoryUpdateController {
         private InventoryManager manager;
-        private InventoryPrompter prompter;
-        private InventoryView view;
+        private InventoryConsolePrompter prompter;
+        private InventoryConsoleView view;
         private final String[] options = {
                 "Back to Inventory Menu",
                 "Change Product Name",
@@ -102,8 +102,8 @@ public class InventoryController {
                 "Change Reorder Point"
         };
 
-        public InventoryUpdateController(InventoryView view,
-                                         InventoryPrompter prompter,
+        public InventoryUpdateController(InventoryConsoleView view,
+                                         InventoryConsolePrompter prompter,
                                          InventoryManager manager) {
             this.view = view;
             this.prompter = prompter;

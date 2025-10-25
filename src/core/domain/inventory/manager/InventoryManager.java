@@ -1,11 +1,12 @@
 package core.domain.inventory.manager;
 
 import common.util.*;
-import core.domain.bindables.*;
+import core.api.dto.*;
+import core.domain.api.datastructures.*;
 import core.domain.inventory.datastructures.*;
 import core.domain.inventory.model.*;
-import core.shared.datastructures.*;
-import core.shared.dto.*;
+import core.shared.events.*;
+import core.shared.requests.*;
 
 /**
  * Class that manages inventory, it also makes publisher

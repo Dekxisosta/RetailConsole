@@ -3,7 +3,7 @@ package core.domain.analytics.controller;
 import common.util.*;
 import config.*;
 import core.domain.analytics.manager.*;
-import core.domain.analytics.ui.*;
+import core.domain.analytics.ui.console.*;
 
 /**
  * Controller class / orchestrator layer of the analytics module,

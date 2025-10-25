@@ -1,4 +1,4 @@
-package core.shared.datastructures;
+package core.domain.api.datastructures;
 
 import core.domain.api.model.Record;
 

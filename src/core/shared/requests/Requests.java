@@ -1,7 +1,7 @@
-package core.domain.bindables;
+package core.shared.requests;
 
-import core.shared.datastructures.*;
-import core.shared.dto.*;
+import core.api.dto.*;
+import core.domain.api.datastructures.*;
 
 /**
  * A lightweight request service similar to Roblox's BindableFunction.

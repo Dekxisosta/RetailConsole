@@ -1,8 +1,8 @@
 package core.domain.sales.model;
 
 import common.util.*;
+import core.domain.api.datastructures.*;
 import core.domain.api.model.Record;
-import core.shared.datastructures.*;
 
 /**
  * Represents a single sales record or transaction entry.

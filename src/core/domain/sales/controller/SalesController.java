@@ -1,7 +1,8 @@
-package core.domain.sales;
+package core.domain.sales.controller;
 
 import common.util.*;
 import config.*;
+import core.domain.sales.manager.*;
 import core.domain.sales.model.*;
 import core.domain.sales.ui.console.*;
 

@@ -1,4 +1,4 @@
-package core.domain.inventory.ui;
+package core.domain.inventory.ui.console;
 
 import core.domain.inventory.model.*;
 import core.shared.id.*;
@@ -6,7 +6,7 @@ import core.shared.ui.console.*;
 
 import java.io.*;
 
-public class InventoryPrompter extends ConsolePrompter {
+public class InventoryConsolePrompter extends ConsolePrompter {
     /**
      * Generates product IDs. This class extends the id generator
      * abstraction which needs designated prefixes
@@ -33,7 +33,7 @@ public class InventoryPrompter extends ConsolePrompter {
      * @param reader used for scanning inputs
      * @see BufferedReader
      */
-    public InventoryPrompter(BufferedReader reader) {
+    public InventoryConsolePrompter(BufferedReader reader) {
         super(reader);
         this.idGenerator = new ProductIDGenerator();
     }

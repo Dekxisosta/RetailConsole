@@ -4,7 +4,7 @@ import common.util.*;
 import config.*;
 import core.domain.analytics.controller.*;
 import core.domain.inventory.controller.*;
-import core.domain.sales.*;
+import core.domain.sales.controller.*;
 import core.shared.ui.console.*;
 
 /**

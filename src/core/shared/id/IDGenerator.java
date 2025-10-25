@@ -14,7 +14,7 @@ public abstract class IDGenerator {
     private int alphaCounter = 0;
     private int counter = 1;
 
-    /** @return generated id with specified format (e.g. PRE-A0692) */
+    /** @return generated id with specified format (e.g. PRD-A0692) */
     public String generateID() {
         return String.format("%s-%s%04d", getPrefix(), getAlphaCode(), getNumberCode());
     }

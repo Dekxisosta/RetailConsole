@@ -1,7 +1,7 @@
 package core.domain.sales.ui.console;
 
+import core.domain.api.datastructures.*;
 import core.domain.sales.model.*;
-import core.shared.datastructures.*;
 import core.shared.id.*;
 import core.shared.ui.console.*;
 

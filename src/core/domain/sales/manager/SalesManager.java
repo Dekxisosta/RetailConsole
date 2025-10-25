@@ -1,12 +1,12 @@
-package core.domain.sales;
+package core.domain.sales.manager;
 
 import common.util.*;
-import common.util.functions.*;
-import core.domain.bindables.*;
+import core.api.dto.*;
+import core.domain.api.datastructures.*;
 import core.domain.sales.datastructures.*;
 import core.domain.sales.model.*;
-import core.shared.datastructures.*;
-import core.shared.dto.*;
+import core.shared.events.*;
+import core.shared.requests.*;
 
 import java.io.*;
 

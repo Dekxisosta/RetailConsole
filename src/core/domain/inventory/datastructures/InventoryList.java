@@ -1,8 +1,8 @@
 package core.domain.inventory.datastructures;
 
+import core.api.dto.*;
+import core.domain.api.datastructures.*;
 import core.domain.inventory.model.*;
-import core.shared.datastructures.*;
-import core.shared.dto.*;
 
 public class InventoryList<T extends Product> extends RecordList<T> {
     /**
