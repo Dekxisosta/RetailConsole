@@ -50,6 +50,7 @@ There were no limitations mentioned in the given brief
 
 ## Possible improvements
 - DIContainer class
+- Bootstrap class
 - Gateway implementation for event-driven architecture
 - Add a sales record deletion method (purposely not added to make records unvoidable)
 - Separate Validator classes
