@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td rowspan="2"><img src="azur-lane-akashi.gif" width="180"></img></td>
+    <td rowspan="2"><img src="gura-eat.gif" width="180"></img></td>
     <td colspan="5"><h1> UmiseaRetailConsole - SmartInventory and SalesManagementSystem </h1></td>
   </tr>
   <tr>
@@ -42,6 +42,7 @@
 There were no limitations mentioned in the given brief
 
 ## Implementations
+To foster a clean design, such concepts were implemented in the program
 - Simple event-driven system
 - Domain-driven design system
 - MVC architecture
@@ -49,8 +50,14 @@ There were no limitations mentioned in the given brief
 - Functional Interfaces
 
 ## Possible improvements
+Since codiva.io (an online compiler) can only hold a total of 3MB of files,
+and I am limiting the complexity of the project,
+implemented features were kept at the bare minimum. Shown below
+are possible implementations you could do to better improve this
+project!
 - DIContainer class
 - Bootstrap class
+- Flexible presentation for n amount of records, n > 10 or 20
 - Gateway implementation for event-driven architecture
 - Add a sales record deletion method (purposely not added to make records unvoidable)
 - Separate Validator classes
