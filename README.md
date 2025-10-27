@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td rowspan="2"><img src="azur-lane-akashi.gif" width="180"></img></td>
-    <td colspan="5"><h1> SmartInventory and SalesManagementSystem </h1></td>
+    <td colspan="5"><h1> UmiseaRetailConsole - SmartInventory and SalesManagementSystem </h1></td>
   </tr>
   <tr>
     <td colspan="5">
