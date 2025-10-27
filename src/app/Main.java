@@ -157,61 +157,61 @@ public class Main {
                                          InventoryConsolePrompter productIDGenerator) {
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Hatsune Miku", "WorldIsMine", 149.99),
+                new Product.ProductInfo("Pekora Carrot Plugs", "Hololive JP", 149.99),
                 new Product.StockInfo(0, 50) // out of stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Megurine Luka", "JustBeFriend", 129.50),
+                new Product.ProductInfo("Suisei Starblade", "Hololive JP", 129.50),
                 new Product.StockInfo(25, 40) // low stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Kagamine Rin", "Meltdown", 99.00),
+                new Product.ProductInfo("Marine Captain’s Hat", "Hololive JP", 99.00),
                 new Product.StockInfo(500, 100) // plenty available
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Kagamine Len", "EvilServant", 109.75),
+                new Product.ProductInfo("Aqua Trident", "Hololive JP", 109.75),
                 new Product.StockInfo(10, 30) // low stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("IA", "SixTrillion", 179.00),
+                new Product.ProductInfo("Calli Reaper Scythe", "Hololive EN", 179.00),
                 new Product.StockInfo(300, 80) // plenty
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("GUMI", "Echo", 119.99),
+                new Product.ProductInfo("Gura Shark Hoodie", "Hololive EN", 119.99),
                 new Product.StockInfo(50, 50) // average stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("MEIKO", "ChangeMe", 89.99),
+                new Product.ProductInfo("Korone Doggo Plush", "Hololive JP", 89.99),
                 new Product.StockInfo(0, 40) // out of stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("KAITO", "Cantarella", 139.99),
+                new Product.ProductInfo("Miko Sacred Wand", "Hololive JP", 139.99),
                 new Product.StockInfo(200, 50) // available
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Teto Kasane", "TripleBaka", 79.50),
+                new Product.ProductInfo("Okayu Rice Bowl", "Hololive JP", 79.50),
                 new Product.StockInfo(5, 20) // very low stock
         ));
 
         inventoryManager.addProduct(new Product(
                 productIDGenerator.generateID(),
-                new Product.ProductInfo("Fukase", "GhostRule", 159.49),
+                new Product.ProductInfo("Shion Witch Hat", "Hololive JP", 159.49),
                 new Product.StockInfo(450, 60) // plenty
         ));
 

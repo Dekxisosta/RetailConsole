@@ -15,7 +15,7 @@ public final class AppConfig {
     /**
      * The program's name. To be used as a personalized name for the CLI tool
      */
-    public static String PROGRAM_NAME = "ASACOCO RETAIL CLI STORE";
+    public static String PROGRAM_NAME = "🦐 UMISEA RETAIL CLI STORE 🦐";
 
     /**
      * The program's tagline. To be used as a personalized tagline for the CLI tool
@@ -25,7 +25,7 @@ public final class AppConfig {
              / {} \\ { {__   / {} \\ /  ___}/  {}  \\/  ___}/  {}  \\
             /  /\\  \\.-._} }/  /\\  \\\\     }\\      /\\     }\\      /
             `-'  `-'`----' `-'  `-' `---'  `----'  `---'  `----'\s
-            Since 1969  - Over 420 Branches in the Philippines
+            Asacoco Food Corporation - From dragon butt plugs to global market domination
             ==========================================================
             """;
 }

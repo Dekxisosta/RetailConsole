@@ -168,8 +168,7 @@ class SalesRecordController {
      *
      * @param record The current sales record being constructed
      */
-    private void addProduct(SalesRecord record){
-        // Display current totals so the user can choose a valid product
+    private void addProduct(SalesRecord record) {
         view.showTotals(manager.getTotalsList());
 
         String id = prompter.getString("product id").toUpperCase();
@@ -178,10 +177,18 @@ class SalesRecordController {
             Logger.log("Invalid Product ID", "No product found with ID: " + id, Logger.Level.NOTICE);
             return;
         }
+        if(product.getStock()==0){
+            Logger.log("Insufficient Stock", "Not enough stock available for this product", Logger.Level.NOTICE);
+            return;
+        }
 
         int quantity = prompter.getInt("quantity");
         if(quantity > product.getStock()) {
             Logger.log("Insufficient Stock", "Not enough stock available for this product", Logger.Level.NOTICE);
+            return;
+        }
+        if(quantity == 0){
+            Logger.log("Invalid Quantity", "Cannot input quantity as 0", Logger.Level.NOTICE);
             return;
         }
 
@@ -202,5 +209,6 @@ class SalesRecordController {
 
         // Notify other parts of the system that stock has changed
         manager.fireStockReductionEvent(product);
+
     }
 }
