@@ -12,7 +12,7 @@
 </table>
 
 ## 🦐 System Diagram
-
+// TODO: ADD A FLOWCHART SHOWCASING THE SYSTEM'S DESIGN
 
 ## 🦐 Requirements
 ### Product Management Module
@@ -56,7 +56,7 @@ To foster a clean design, such concepts were implemented in the program
 ![Reports demo](report-demo.png)
 
 ## 🦐 Possible improvements
-Since codiva.io (an online compiler) can only hold a total of 3MB of files,
+Since codiva.io (an online compiler) can only hold a total of 3MB worth of files,
 and I am limiting the complexity of the project,
 implemented features were kept at the bare minimum. Shown below
 are possible implementations you could do to better improve this
