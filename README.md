@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td rowspan="2"><img src="gura-eat.gif" width="180"></img></td>
+    <td rowspan="2"><img src="gura-vtuber.gif" width="180"></img></td>
     <td colspan="5"><h1> UmiseaRetailConsole - SmartInventory and SalesManagementSystem </h1></td>
   </tr>
   <tr>
