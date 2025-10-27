@@ -11,14 +11,14 @@
   </tr>
 </table>
 
-## Program Screenshots
+## 🦐 Program Screenshots
 
-## How to use
+## 🦐 How to use
 
-## System Diagram
+## 🦐 System Diagram
 
 
-## Requirements
+## 🦐 Requirements
 ### Product Management Module
 - Add New Product
 - View All Products (Forward and Backward Traversal)
@@ -38,10 +38,10 @@
 - Identify the product with the highest total sales
 - Identify out-of-stock products
 
-## Limitations
+## 🦐 Limitations
 There were no limitations mentioned in the given brief
 
-## Implementations
+## 🦐 Implementations
 To foster a clean design, such concepts were implemented in the program
 - Simple event-driven system
 - Domain-driven design system
@@ -49,7 +49,7 @@ To foster a clean design, such concepts were implemented in the program
 - OOP Principles
 - Functional Interfaces
 
-## Possible improvements
+## 🦐 Possible improvements
 Since codiva.io (an online compiler) can only hold a total of 3MB of files,
 and I am limiting the complexity of the project,
 implemented features were kept at the bare minimum. Shown below
