@@ -11,10 +11,6 @@
   </tr>
 </table>
 
-## 🦐 Program Screenshots
-
-## 🦐 How to use
-
 ## 🦐 System Diagram
 
 
@@ -48,6 +44,16 @@ To foster a clean design, such concepts were implemented in the program
 - MVC architecture
 - OOP Principles
 - Functional Interfaces
+
+## 🦐 Program Screenshots
+### Smart Inventory Module
+![Inventory demo](inventory-demo.png)
+
+### Sales Management Module
+![Sales demo](sales-demo.png)
+
+### Reports and Analytics Module
+![Reports demo](report-demo.png)
 
 ## 🦐 Possible improvements
 Since codiva.io (an online compiler) can only hold a total of 3MB of files,
