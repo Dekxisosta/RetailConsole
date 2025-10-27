@@ -11,6 +11,11 @@
   </tr>
 </table>
 
+## 🦐 Related Links
+
+Codiva: [Umisea Retail Console Codiva link](https://www.codiva.io/p/aec4d767-965c-459f-a85a-4e6bccf7a3d1)
+
+
 ## 🦐 System Diagram
 // TODO: ADD A FLOWCHART SHOWCASING THE SYSTEM'S DESIGN
 
